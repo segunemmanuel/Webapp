@@ -4,7 +4,7 @@
     
 
     
-     <div class="alert alert-info text-center"><br>
+     <div class="text-center alert alert-info"><br>
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&nbsp;&nbsp; &times;</a>
 
         <div class="progress">
@@ -13,7 +13,7 @@
           <p style="color:white; font-size=14px;"></p>
           </div>
         </div><div class="progress" style="">
-          <div class="progress-bar progress-bar-success progress-bar-success" role="progressbar" aria-valuenow="100"
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100"
           aria-valuemin="0" aria-valuemax="100" style="width:100%; background-color: #6c1f74;">
           <p style="color:white; font-size=14px;"></p>
           </div>
@@ -83,7 +83,7 @@
     </script>       
             
             <div class="row" style=" padding: 2px; border-bottom: 4px solid #841990;">
-              <div class="col-md-3 col-sm-4 text-center" id="uploadDiv" ><br>
+              <div class="text-center col-md-3 col-sm-4" id="uploadDiv" ><br>
                 <div>
                    <a class="btn btn-primary" style="color: #fff" id="button" href="<?php echo base_url('controllertouploadimage') ?>"><i class="fa fa-pencil"> Upload a New Image</i> </a>
                 </div><br>
@@ -163,7 +163,6 @@
                           </div>
                           <div class="modal-body">
                             <?php $attributes = array('role' => 'form' ); ?>
-                             <?php echo form_open_multipart('controller/method', $attributes);?>
                                 <div class="form-group">
                                     <label for="receiver_email">Choose Support Department <span class="required">*</span></label>
                                      <select type="select" name="support_email" class="form-control" id="sex" >
@@ -266,7 +265,7 @@
                                             <td class="text-center"><strong>Report an Issue</strong></td>
                                             </tr>
                                             <tr>
-                                            <td class="text-center"><br><?php echo transaction id here; ?></td>
+                                            <td class="text-center"><br><?php echo "transaction id here;" ?></td>
                                             <td class="text-center"><br>
                                                 <div class="dropdown">
                                                       <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-download"></i> Download File

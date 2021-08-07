@@ -3,13 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard  extends CI_Controller {
  
-	public function index()
+	public function Index()
 	{
+
+		$this->load->view('templates/header');
 		$this->load->view('dashboard');
-		// file path
+		$this->load->view('templates/footer');
+
+		
 	}
  
-
+	 
         
 
 

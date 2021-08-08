@@ -1,8 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Dashboard  extends CI_Controller {
- 
 	public function Index()
 	{
 
@@ -10,7 +8,7 @@ class Dashboard  extends CI_Controller {
 		$this->load->view('dashboard');
 		$this->load->view('templates/footer');
 
-		
+
 	}
  
 	 

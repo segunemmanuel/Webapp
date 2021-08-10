@@ -1,25 +1,18 @@
 <div class="row">
       <div class="col-md-6 col-md-offset-3">
-  
 
-      </div>
+ 
+    </div>
       <div class="col-md-4 col-md-offset-4">
+      <?php echo validation_errors(); ?>
+
        <p class=""><a class="pull-right" href=""> Login</a></p><br>
-         <!--  -->
+         <form class = 'form-horizontal', method="post" id = 'registration', role = 'form', action="<?php echo base_url('home/register')?>">
             
-         <?php $atrributes = array(
-          'class'=>'form-horizontal',
-
-        )?>
- <?php echo form_open('home/register', ' "class"=> "form-horizontal" ' ); ?>   
-
-
-
-
           <div class="form-group">
             <label class="control-label col-sm-2" for="name"></label>
             <div class="col-sm-10">
-              <input type="name" name="name" value="" class="form-control" id="name" placeholder="Enter Full Name" required>
+              <input type="name" name="name" value="" class="form-control" id="name" placeholder="Enter Full Name" >
             </div>
           </div>
           <div class="form-group">
@@ -37,26 +30,26 @@
           <div class="form-group">
             <label class="control-label col-sm-2" for="email"></label>
             <div class="col-sm-10">
-              <input type="email" name="email" value="" class="form-control" id="email" placeholder="Enter Email" required>
+              <input type="email" name="email" value="" class="form-control" id="email" placeholder="Enter Email" >
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-sm-2" for="pwd"></label>
             <div class="col-sm-10"> 
-              <input type="password" name="password" class="form-control" id="pwd" placeholder="Enter Password" required>
+              <input type="password" name="password" class="form-control" id="pwd" placeholder="Enter Password" >
             </div>
           </div>
             <div class="form-group">
             <label class="control-label col-sm-2" for="pwd"></label>
             <div class="col-sm-10"> 
-              <input type="password" name="confirm_password" class="form-control" id="pwd" placeholder="Confirm Password" required>
+              <input type="password" name="confirm_password" class="form-control" id="pwd" placeholder="Confirm Password" >
             </div>
           </div>
         
           <div class="form-group"> 
             <div class="col-sm-offset-2 col-sm-10">
               <div class="checkbox">
-                <label><input type="checkbox" required> Accept Agreement</label>
+                <label><input type="checkbox" > Accept Agreement</label>
               </div>
             </div>
           </div>

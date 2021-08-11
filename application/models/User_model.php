@@ -28,15 +28,15 @@ return TRUE;
  public function insertUserRegistrationData($email,$fullname,$rawpass,$sex)
  {
  $data=array(
-'fullname'=> '$fullname',
-'sex'=>'$sex',
-'password'=>'$rawpass',
-'email'=>'$email'
+'fullname'=> $fullname,
+'sex'=>$sex,
+'password'=>$rawpass,
+'email'=>$email
 
  );  
 
  $this->db->insert('users', $data);
-$insert_id=$this->insert_id();
+$insert_id=$this->db->insert_id();
 return $insert_id;
  }
 

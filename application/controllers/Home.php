@@ -11,7 +11,7 @@ class Home  extends CI_Controller {
 		$this->load->library('session');
 	  }
 
-	  
+
 	public function login()
 {
 $this->load->view('templates/header');
@@ -41,7 +41,7 @@ if ($this->form_validation->run() == FALSE)
 {
 // Collect form data;
 $fullname = $this->input->post('name');
-$rawpass = $this->input->post('password');
+$rawpass = md5($this->input->post('password'));
 $confirm_password = $this->input->post('confirm_password');
 $email = $this->input->post('email');
 $sex = $this->input->post('sex');

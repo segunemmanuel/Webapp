@@ -1,13 +1,39 @@
 <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-6 col-md-offset-5">
 
- 
+      <?php  if ($this->session->flashdata('error')) {
+
+echo '<div class="alert alert-warning alert-dismissible">
+<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'. $this->session->flashdata('error').  '</div>' ;}?> 
+
+
+
+
+
+<?php  if ($this->session->flashdata('success')) {
+
+echo '<div class="alert alert-warning alert-dismissible">
+<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'. $this->session->flashdata('success').  '</div>' ;} ?> 
+
+
+
+
+
+
+
+
+
+
     </div>
       <div class="col-md-4 col-md-offset-4">
-      <?php echo validation_errors(); ?>
+
 
        <p class=""><a class="pull-right" href=""> Login</a></p><br>
-         <form class = 'form-horizontal', method="post" id = 'registration', role = 'form', action="<?php echo base_url('home/register')?>">
+
+       <?php echo validation_errors('<div class="alert alert-warning alert-dismissible">
+<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>',  '</div>'); ?>
+
+<form class = 'form-horizontal', method="post" id = 'registration', role = 'form', action="<?php echo base_url('home/register')?>">
             
           <div class="form-group">
             <label class="control-label col-sm-2" for="name"></label>

@@ -7,10 +7,6 @@
 echo '<div class="alert alert-warning alert-dismissible">
 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'. $this->session->flashdata('error').  '</div>' ;}?> 
 
-
-
-
-
 <?php  if ($this->session->flashdata('success')) {
 
 echo '<div class="alert alert-warning alert-dismissible">
@@ -18,7 +14,7 @@ echo '<div class="alert alert-warning alert-dismissible">
 
 
       
-       <p class=""><a class="pull-right" href="<?php echo base_url('controller/method') ?>"> Register</a></p><br>
+       <p class=""><a class="pull-right" href="<?php echo base_url('home/register') ?>"> Register</a></p><br>
         <form class="" role="form" method="post" action="controller/method">
           <div class="form-group">
             

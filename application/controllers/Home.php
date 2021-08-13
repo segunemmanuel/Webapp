@@ -14,9 +14,39 @@ class Home  extends CI_Controller {
 
 	public function login()
 {
+	// Validate form inputs
+$this->form_validation->set_rules('email', 'Email', 'trim|required');
+$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+
+
+
+
+if ($this->form_validation->run() == FALSE)
+                {
 $this->load->view('templates/header');
 $this->load->view('login');
 $this->load->view('templates/footer');
+                }
+				else{ 
+					// collect form data and login;
+					$rawpass = md5($this->input->post('password'));
+					$email = $this->input->post('email');
+
+				
+$result=$this->User_model->getLoginInData($email, $rawpass);
+if($result== FALSE){
+	$error="User not found. Please register";
+	$this->session->set_flashdata('error', $error);
+	redirect('home/login');
+	 
+}
+else{
+redirect('/dashboard');
+
+}
+				}
+
+
 
 	}
 
@@ -85,11 +115,49 @@ else{
 
         }
 
-		public function resetpassword(){
-			$this->load->view('templates/header');
-            $this->load->view('resetpassword');
-            $this->load->view('templates/footer');
+
+
+		// RESETING PASSWORD
+		public function resetpassword()
+		{
+// VALIDATION OF EMAIL INPUT
+			$this->form_validation->set_rules('email', 'Email', 'trim|required');
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->load->view('templates/header');
+				$this->load->view('resetpassword');
+				$this->load->view('templates/footer');
+			}
+			else
+			{
+
+				// Get email from  the user
+				$email=$this->input->post('email');
+// Check if email exists in the database;
+
+$result=$this->User_model->userEmailExists($email);
+
+
+// Email the user
+
+
+
+
+
+// Insert the token and the code in to database
+
+// Redirect users to login;
+
 		}
+	}
+
+
+
+
+
+
+
+
 
 
 		public function verifypasswordcode(){

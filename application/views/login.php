@@ -13,11 +13,15 @@ echo '<div class="alert alert-warning alert-dismissible">
 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'. $this->session->flashdata('success').  '</div>' ;} ?> 
 
 
+<?php echo validation_errors('<div class="alert alert-warning alert-dismissible">
+<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>',  '</div>'); ?>
+
+
       
        <p class=""><a class="pull-right" href="<?php echo base_url('home/register') ?>"> Register</a></p><br>
-        <form class="" role="form" method="post" action="controller/method">
+        <form class="" role="form" method="post" action="<?php echo base_url('home/login')?>">
           <div class="form-group">
-            
+             
             <div class="">
               <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" required>
             </div>
@@ -32,7 +36,7 @@ echo '<div class="alert alert-warning alert-dismissible">
           <div class="form-group"> 
             <div class="">
               <button type="submit" class="text-center btn btn-primary" name="submit_login">Login</button><br><br>
-              <div class="text-center" ><a href=" controller/method ?>">Forgot Password ? </a></div>
+      <div class="text-center"><a href="<?php echo base_url('home/resetpassword')?>" >Forgot Password ? </a></div>
             </div>
           </div>
         </form>

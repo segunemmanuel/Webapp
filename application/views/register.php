@@ -14,22 +14,9 @@ echo '<div class="alert alert-warning alert-dismissible">
 
 echo '<div class="alert alert-warning alert-dismissible">
 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'. $this->session->flashdata('success').  '</div>' ;} ?> 
-
-
-
-
-
-
-
-
-
-
     </div>
       <div class="col-md-4 col-md-offset-4">
-
-
-       <p class=""><a class="pull-right" href=""> Login</a></p><br>
-
+       <p class=""><a class="pull-right" href="<?php echo base_url('home/login')?> "> Login</a></p><br>
        <?php echo validation_errors('<div class="alert alert-warning alert-dismissible">
 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>',  '</div>'); ?>
 

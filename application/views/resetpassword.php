@@ -5,8 +5,10 @@
       
       <!--Echo validation error-->
       
+<?php echo validation_errors('<div class="alert alert-warning alert-dismissible">
+<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>',  '</div>'); ?>
        <br>
-        <form class="form-horizontal" role="form" method="post" action="">
+        <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('home/resetpassword')?>">
           <div class="form-group col-md-10">
             <label class="" for="email">Enter Email for Password Reset Code</label><br><br>
             <div class="">
@@ -16,7 +18,7 @@
           <br>
           <div class="form-group col-md-4"> 
             <div class="">
-              <button type="submit" class="btn btn-primary text-center" name="send_code">Send Code</button><br><br>
+              <button type="submit" class="text-center btn btn-primary" name="send_code">Send Code</button><br><br>
             </div>
           </div>
         </form>

@@ -83,4 +83,36 @@ return TRUE;
 
 
 
+
+//  INSERT USER PASSWORD  DATA
+
+public function insertpasswordresetcode($data)
+{
+ $this->db->insert('passreset', $data);
+$insert_id=$this->db->insert_id();
+return $insert_id;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

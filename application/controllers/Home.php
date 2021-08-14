@@ -9,6 +9,7 @@ class Home  extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('email');
 		$this->load->library('session');
+		
 	  }
 
 
@@ -131,22 +132,84 @@ else{
 			else
 			{
 
-				// Get email from  the user
-				$email=$this->input->post('email');
+// Get email from  the user
+$email=$this->input->post('email');
 // Check if email exists in the database;
-
 $result=$this->User_model->userEmailExists($email);
 
+$this->session->set_userdata('email',$email);
+
+
+if($result== TRUE){
 
 // Email the user
+$token=md5(uniqid(rand(),true));
+$randcode=md5($email);
+$code=substr($randcode,2,8);
+$status="TRUE";
+$subject= "Password Reset Link | Lineo";
+$message="Dear customer,\r\n You requested for a password reset link on Lineo platform\r\n Kindly click on the link or copy and paste this link in your browser url to reset your password.\n\n This is your link: ".base_url('home/verifypasswordcode')."/?tokenID=" . $token . "&status=".$status ."\n\n Your reset password code is:".$code."\r\n Thanks\r\nRegards,\r\n\lineo support\r\n\lineo.com";
 
+
+
+// setting the email config
+$config=array(
+	'protocol'=>'smtp',
+	'smtp_host'=>'ssl://smtp.googlemail.com',
+	'smtp_port'=>465,
+	'smtp_user'=>'segun9679gmail.com',
+	'smtp_pass'=>'segun8080',
+	'mailtype'=>'html',
+	'smtp_timeout'=> '7',
+	'charset'=>'iso-8859-1',
+	'wordwrap' =>TRUE
+);
+// Load library and pass in the config
+$this->load->library('email',$config);
+
+$this->email->set_newline('\r\n');
+
+$supportEmail="reset@lineo.com";
+$supportname="support team";
+$email=$this->session->userdata('email');
+
+$this->email->from($supportEmail, $supportname);
+$this->email->to($email);
+$this->email->subject($subject);
+$this->email->message($message);
+
+if($this->email->send()){
+	echo $message;
+
+	// insert data into the db
+$data =array(
+	'email'=>$email,
+	'token'=>$token,
+	'code'=>$code,
+	'status'=>TRUE );
+
+// Call the model function to insert data into the reset password table
+
+}
+else{
+echo  "email not valid";
+
+}
 
 
 
 
 // Insert the token and the code in to database
 
+
+}
+else{
 // Redirect users to login;
+
+}
+
+
+
 
 		}
 	}
@@ -162,7 +225,7 @@ $result=$this->User_model->userEmailExists($email);
 
 		public function verifypasswordcode(){
 			$this->load->view('templates/header');
-            $this->load->view('resetpassword');
+            $this->load->view('verifypasswordresetcode');
             $this->load->view('templates/footer');
 		}
 }

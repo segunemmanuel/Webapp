@@ -202,14 +202,11 @@ redirect('home/login');
 
 //  for inital msg
 else{
-$error=  "email not valid";
+$error=  "Message not sent, Re type";
 $this->session->flash_data('error',$error);
-redirect('home/login');
+redirect('home/resetpassword');
 
 }
-
-
-
 
 // Insert the token and the code in to database
 
@@ -217,6 +214,9 @@ redirect('home/login');
 }
 else{
 // Redirect users to login;
+$error=  "Email not valid re enter";
+$this->session->flash_data('error',$error);
+redirect('home/resetpassword');
 
 }
 

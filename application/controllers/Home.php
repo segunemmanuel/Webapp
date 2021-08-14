@@ -189,10 +189,22 @@ $data =array(
 	'status'=>TRUE );
 
 // Call the model function to insert data into the reset password table
+$result=$this->User_model->insertpasswordresetcode($data);
+
+if($result>0){
+$success="Please check your email for pasword reset code";
+$this->session->set_flashdata('success',$success);
+redirect('home/login');
 
 }
+
+}
+
+//  for inital msg
 else{
-echo  "email not valid";
+$error=  "email not valid";
+$this->session->flash_data('error',$error);
+redirect('home/login');
 
 }
 

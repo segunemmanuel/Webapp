@@ -236,14 +236,14 @@ redirect('home/resetpassword');
 			$result=$this->User_model->verifyToken($tokenID,$status);
 
 if($result==false){
-$error="Sorry, Token Invalid Try again";
+$error="Sorry, Token expired Try again";
 $this->session->set_flashdata('error',$error);
 redirect('home/resetpassword');
 }
 else
 {
 	$useremail=$result;
-	$success="Yoyr code has been verified for " . $useremail. ",Pls enter a  code";
+	$success="Your token has been verified for " . $useremail. ",Pls enter a  code";
 $this->session->set_flashdata('success',$success);
 redirect('home/verifypasswordcode');
 }

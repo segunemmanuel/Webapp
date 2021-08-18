@@ -148,7 +148,7 @@ $randcode=md5($email);
 $code=substr($randcode,2,8);
 $status="TRUE";
 $subject= "Password Reset Link | Lineo";
-$message="Dear customer,\r\n You requested for a password reset link on Lineo platform\r\n Kindly click on the link or copy and paste this link in your browser url to reset your password.\n\n This is your link: ".base_url('home/verifypasswordcode')."/?tokenID=" . $token . "&status=".$status ."\n\n Your reset password code is:".$code."\r\n Thanks\r\nRegards,\r\n\lineo support\r\n\lineo.com";
+$message="Dear customer,\r\n You requested for a password reset link on Lineo platform\r\n Kindly click on the link or copy and paste this link in your browser url to reset your password.\n\n This is your link: ".base_url('home/verifytoken')."/?tokenID=" . $token . "&status=".$status ."\n\n Your reset password code is:".$code."\r\n Thanks\r\nRegards,\r\n\lineo support\r\n\lineo.com";
 
 
 
@@ -227,56 +227,56 @@ redirect('home/resetpassword');
 	}
 
 
-		public function verifypasswordcode(){
+		public function verifytoken(){
 // HOW TO GRAB QUERY REQUESTS
 			$url=parse_url($_SERVER['REQUEST_URI']);
-			 parse_str($url['query'],$params);
+			parse_str($url['query'],$params);
 			$tokenID=  $params['tokenID'];
 			$status= $params['status'];
-
-
-$result=$this->User_model->verifyToken($tokenID,$status);
+			$result=$this->User_model->verifyToken($tokenID,$status);
 
 if($result==false){
 $error="Sorry, Token Invalid Try again";
 $this->session->set_flashdata('error',$error);
 redirect('home/resetpassword');
-
 }
 else
 {
-
 	$useremail=$result;
-
-	$success="Yoyr code has been verified for " . $useremail. ",Pls enter a new password";
+	$success="Yoyr code has been verified for " . $useremail. ",Pls enter a  code";
 $this->session->set_flashdata('success',$success);
+redirect('home/verifypasswordcode');
+}
+}
+
+
+		public function verifypasswordcode(){
+			$this->form_validation->set_rules('resetcode','Reset Code ','trim|required|min_length[7]');
+
+
+			if($this->form_validation->run()==FALSE){
+			
+				$this->load->view('templates/header');
+				$this->load->view('verifypasswordresetcode');
+				$this->load->view('templates/footer');  
+			
+			}
+			else{
+				$code=$this->input->post('resetcode');
+				$result=$this->User_model->verifyCode($code);
+
+if($result){
 redirect('home/newpassword');
 
+}else{
+	$error="Sorry, Passowrd reset code invalid Try again";
+	$this->session->set_flashdata('error',$error);
+redirect('home/resetpassword');
 
 }
 
-
-$this->form_validation->set_rules('resetcode','Reset Code ','trim|required|min_length[7]');
-
-
-if($this->form_validation->run()==FALSE){
-
-	$this->load->view('templates/header');
-	$this->load->view('verifypasswordresetcode');
-	$this->load->view('templates/footer');
-
-}
-else{
-	$code=$this->input->post('resetcode');
-
-// Check if the code and token and status is valid;
-
-
-
-}
-			
+ 			}
 		}
-
 
 
 

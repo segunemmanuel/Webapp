@@ -103,11 +103,34 @@ return $insert_id;
 
 
 //  Check if code and token exists
-public function passwordResetCodeExists($tokenID,$status)
+public function verifyToken($tokenID,$status)
 {
 // SEARCHES THE DB
    $this->db->where('token', $tokenID);
    $this->db->where('status', $status);
+
+// FETCH RESULT/table from the database
+   $query = $this->db->get('passreset');
+     return 
+
+$result=  $query-> row();
+if(isset($result)){
+return  $result->email;
+
+}
+else{
+    return false;
+}
+
+}
+
+
+
+
+public function verifyCode($code)
+{
+// SEARCHES THE DB
+   $this->db->where('code', $code);
 
 // FETCH RESULT/table from the database
    $query = $this->db->get('passreset');

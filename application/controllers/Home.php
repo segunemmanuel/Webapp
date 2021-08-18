@@ -233,6 +233,8 @@ redirect('home/resetpassword');
 			parse_str($url['query'],$params);
 			$tokenID=  $params['tokenID'];
 			$status= $params['status'];
+
+
 			$result=$this->User_model->verifyToken($tokenID,$status);
 
 if($result==false){
@@ -250,8 +252,8 @@ redirect('home/verifypasswordcode');
 }
 
 
-		public function verifypasswordcode(){
-			$this->form_validation->set_rules('resetcode','Reset Code ','trim|required|min_length[7]');
+public function verifypasswordcode(){
+$this->form_validation->set_rules('resetcode','Reset Code ','trim|required|min_length[7]');
 
 
 			if($this->form_validation->run()==FALSE){

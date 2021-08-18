@@ -239,7 +239,7 @@ redirect('home/resetpassword');
 
 if($result==false){
 $error="Sorry, Token expired Try again";
-$this->session->set_flashdata('error',$error);
+$this->session->set_flashdata('error', $error);
 redirect('home/resetpassword');
 }
 else
@@ -271,7 +271,7 @@ if($result){
 redirect('home/newpassword');
 
 }else{
-	$error="Sorry, Passowrd reset code invalid Try again";
+	$error="Sorry, Password reset code invalid Try again";
 	$this->session->set_flashdata('error',$error);
 redirect('home/resetpassword');
 

@@ -207,7 +207,7 @@ $this->session->flash_data('error',$error);
 redirect('home/resetpassword');
 
 }
-
+ 
 // Insert the token and the code in to database
 
 
@@ -227,21 +227,52 @@ redirect('home/resetpassword');
 	}
 
 
-
-
-
-
-
-
-
-
 		public function verifypasswordcode(){
-			$this->load->view('templates/header');
-            $this->load->view('verifypasswordresetcode');
-            $this->load->view('templates/footer');
+// HOW TO GRAB QUERY REQUESTS
+			$url=parse_url($_SERVER['REQUEST_URI']);
+			 parse_str($url['query'],$params);
+			$tokenID=  $params['tokenID'];
+			$status= $params['status'];
+
+			$this->form_validation->set_rules('resetcode','Reset Code ','trim|required|min_length[7]');
+if($this->form_validation==FALSE){
+
+		$this->load->view('templates/header');
+	$this->load->view('verifypasswordresetcode');
+	$this->load->view('templates/footer');
+
+}
+else{
+	$code=$this->input->post('resetcode');
+
+// Check if the code and token and status is valid;
+
+$result=$this->User_model->passwordResetCodeExists($tokenID,$code,$status);
+
+
+if($result= false){
+$error="Sorry, Token Invalidm Try again";
+$this->session->set_flashdata('error',$error);
+redirect('home/verifypasswordcode');
+
+}
+else
+{
+
+	$useremail=$result;
+
+	$success="Yoyr code has been verified,Pls enter a new password";
+$this->session->set_flashdata('success',$success);
+redirect('home/newpassword');
+
+
+}
+
+
+
+}
+			
 		}
-
-
 
 
 		public function newpassword($geturldata){

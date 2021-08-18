@@ -234,10 +234,34 @@ redirect('home/resetpassword');
 			$tokenID=  $params['tokenID'];
 			$status= $params['status'];
 
-			$this->form_validation->set_rules('resetcode','Reset Code ','trim|required|min_length[7]');
-if($this->form_validation==FALSE){
 
-		$this->load->view('templates/header');
+$result=$this->User_model->verifyToken($tokenID,$status);
+
+if($result==false){
+$error="Sorry, Token Invalid Try again";
+$this->session->set_flashdata('error',$error);
+redirect('home/resetpassword');
+
+}
+else
+{
+
+	$useremail=$result;
+
+	$success="Yoyr code has been verified for " . $useremail. ",Pls enter a new password";
+$this->session->set_flashdata('success',$success);
+redirect('home/newpassword');
+
+
+}
+
+
+$this->form_validation->set_rules('resetcode','Reset Code ','trim|required|min_length[7]');
+
+
+if($this->form_validation->run()==FALSE){
+
+	$this->load->view('templates/header');
 	$this->load->view('verifypasswordresetcode');
 	$this->load->view('templates/footer');
 
@@ -247,27 +271,6 @@ else{
 
 // Check if the code and token and status is valid;
 
-$result=$this->User_model->passwordResetCodeExists($tokenID,$code,$status);
-
-
-if($result= false){
-$error="Sorry, Token Invalidm Try again";
-$this->session->set_flashdata('error',$error);
-redirect('home/verifypasswordcode');
-
-}
-else
-{
-
-	$useremail=$result;
-
-	$success="Yoyr code has been verified,Pls enter a new password";
-$this->session->set_flashdata('success',$success);
-redirect('home/newpassword');
-
-
-}
-
 
 
 }
@@ -275,9 +278,10 @@ redirect('home/newpassword');
 		}
 
 
-		public function newpassword($geturldata){
-			echo $geturldata;
 
+
+
+		public function newpassword(){
 			$this->load->view('templates/header');
             $this->load->view('newpassword');
             $this->load->view('templates/footer');

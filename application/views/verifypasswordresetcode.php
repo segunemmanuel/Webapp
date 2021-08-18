@@ -17,7 +17,7 @@ echo '<div class="alert alert-warning alert-dismissible">
       <?php echo validation_errors('<div class="alert alert-warning alert-dismissible">
 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>',  '</div>'); ?>
 
-        <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('home/verifypassword')?>">
+        <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('home/verifypasswordcode')?>">
           <div class="form-group col-sm-10">
             <label class="" for="email">Enter Password Reset Code</label>
             <div class="">

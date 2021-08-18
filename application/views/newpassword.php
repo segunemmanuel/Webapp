@@ -20,7 +20,7 @@ echo '<div class="alert alert-warning alert-dismissible">
 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>',  '</div>'); ?>
       
      <br>
-        <form class="" role="form" method="post" action="<?php echo base_url('controller/method') ?>">
+        <form class="" role="form" method="post" action="<?php echo base_url('Dashboard') ?>">
           <div class="form-group">
             
             <div class=""> 

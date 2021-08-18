@@ -103,11 +103,10 @@ return $insert_id;
 
 
 //  Check if code and token exists
-public function passwordResetCodeExists($tokenID,$code,$status)
+public function passwordResetCodeExists($tokenID,$status)
 {
 // SEARCHES THE DB
    $this->db->where('token', $tokenID);
-   $this->db->where('code', $code);
    $this->db->where('status', $status);
 
 // FETCH RESULT/table from the database
@@ -116,8 +115,7 @@ public function passwordResetCodeExists($tokenID,$code,$status)
 
 $result=  $query-> row();
 if(isset($result)){
-   $useremail=$result->email;
-   return $useremail;
+return  $result->email;
 
 }
 else{

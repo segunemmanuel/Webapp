@@ -4,8 +4,20 @@
       <div class="col-md-4 col-md-offset-4" style="background-color: #fff; border: 1px solid #ddd; padding: 10px;">
       
       
-       <!--Echo validation error-->
-   
+         
+      <?php  if ($this->session->flashdata('error')) {
+
+echo '<div class="alert alert-warning alert-dismissible">
+<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'. $this->session->flashdata('error').  '</div>' ;}?> 
+
+<?php  if ($this->session->flashdata('success')) {
+
+echo '<div class="alert alert-warning alert-dismissible">
+<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'. $this->session->flashdata('success').  '</div>' ;} ?> 
+      
+      <br>
+      <?php echo validation_errors('<div class="alert alert-warning alert-dismissible">
+<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>',  '</div>'); ?>
       
      <br>
         <form class="" role="form" method="post" action="<?php echo base_url('controller/method') ?>">
@@ -24,7 +36,7 @@
           <br>
           <div class="form-group"> 
             <div class="">
-              <button type="submit" class="btn btn-success text-center" name="verify_code">Send</button><br><br>
+              <button type="submit" class="text-center btn btn-success" name="verify_code">Send</button><br><br>
             </div>
           </div>
         </form>

@@ -219,15 +219,10 @@ $this->session->flash_data('error',$error);
 redirect('home/resetpassword');
 
 }
-
-
-
-
 		}
 	}
 
-
-		public function verifytoken(){
+public function verifytoken(){
 // HOW TO GRAB QUERY REQUESTS
 			$url=parse_url($_SERVER['REQUEST_URI']);
 			parse_str($url['query'],$params);
@@ -238,6 +233,7 @@ redirect('home/resetpassword');
 			$result=$this->User_model->verifyToken($tokenID,$status);
 
 if($result==false){
+
 $error="Sorry, Token expired Try again";
 $this->session->set_flashdata('error', $error);
 redirect('home/resetpassword');
@@ -280,16 +276,11 @@ redirect('home/resetpassword');
  			}
 		}
 
-
-
-
 		public function newpassword(){
 			$this->load->view('templates/header');
             $this->load->view('newpassword');
             $this->load->view('templates/footer');
 		}
-
-
 }
 
 

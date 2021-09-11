@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Home  extends CI_Controller {
  
 	public function __construct(){
@@ -247,7 +246,6 @@ redirect('home/verifypasswordcode');
 }
 }
 
-
 public function verifypasswordcode(){
 $this->form_validation->set_rules('resetcode','Reset Code ','trim|required|min_length[7]');
 
@@ -280,6 +278,14 @@ redirect('home/resetpassword');
 			$this->load->view('templates/header');
             $this->load->view('newpassword');
             $this->load->view('templates/footer');
+		}
+
+
+		public function jira(){
+
+			$this->load->view('reg');
+
+
 		}
 }
 

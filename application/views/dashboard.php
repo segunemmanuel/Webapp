@@ -91,13 +91,13 @@
               </div><br>
               
               <div class="col-md-6 col-sm-12" >
-                <h1><?php echo $this->session->set_userdata('fullname'); ?></h1>
+                <h1><?php echo $this->session->userdata('fullname'); ?></h1>
                  
                  <h4 style="color: #aaa"><?php echo 'name of profession here'; ?> </h4>
                  
                   <p><?php echo 'summary here'; ?> </p><br>
               </div>
-              
+              <?php      $this->load->library('session')  ?>
               <div class="col-md-3 col-sm-12" style="border-left: 1px solid #ddd;">
                
                <h5 style="color: #841990" id="ViewProfileDiv"><a href="<?php echo base_url("agentscontroller") ?>" style="color: #841990"><i class="fa fa-group btn btn-default"></i> Find Agents</a><br>

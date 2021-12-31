@@ -42,17 +42,19 @@ if($result== FALSE){
 	redirect('home/login');
 	 
 }
+
 else{
 
 // user loged in already
+
 $result=$this->User_model->getuserData($email);
-$data=[
-'fullname'=>$result->fullname,
-'image'=>$result->image,
-'email'=>$result->email,
-'id'=>$result->id,
-'login'=>true
-];
+$data=array(
+	'fullname'=>$result->fullname,
+	'image'=>$result->image,
+	'email'=>$result->email,
+	'id'=>$result->id,
+	'login'=>TRUE
+);
 
 $this->session->set_userdata($data);
 

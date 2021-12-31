@@ -91,7 +91,7 @@
               </div><br>
               
               <div class="col-md-6 col-sm-12" >
-                <h1><?php echo 'fullname here'; ?></h1>
+                <h1><?php echo $this->session->set_userdata('fullname'); ?></h1>
                  
                  <h4 style="color: #aaa"><?php echo 'name of profession here'; ?> </h4>
                  

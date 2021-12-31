@@ -9,6 +9,8 @@ class Home  extends CI_Controller {
 		$this->load->library('email');
 		$this->load->library('session');
 		
+
+		
 	  }
 
 
@@ -17,10 +19,10 @@ class Home  extends CI_Controller {
 	// Validate form inputs
 $this->form_validation->set_rules('email', 'Email', 'trim|required');
 $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+ 
 
 
-
-
+ 
 if ($this->form_validation->run() == FALSE)
                 {
 $this->load->view('templates/header');
@@ -32,8 +34,8 @@ $this->load->view('templates/footer');
 					$rawpass = md5($this->input->post('password'));
 					$email = $this->input->post('email');
 
-				
-$result=$this->User_model->getLoginInData($email, $rawpass);
+	
+$result=$this->User_model->verifyLoginInData($email, $rawpass);
 if($result== FALSE){
 	$error="User not found. Please register";
 	$this->session->set_flashdata('error', $error);
@@ -41,6 +43,19 @@ if($result== FALSE){
 	 
 }
 else{
+
+// user loged in already
+$result=$this->User_model->getuserData($email);
+$data=[
+'fullname'=>$result->fullname,
+'image'=>$result->image,
+'email'=>$result->email,
+'id'=>$result->id,
+'login'=>true
+];
+
+$this->session->set_userdata($data);
+
 redirect('/dashboard');
 
 }

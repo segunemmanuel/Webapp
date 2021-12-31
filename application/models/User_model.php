@@ -39,7 +39,7 @@ return $insert_id;
  }
 // Process user login
 
-public function getLoginInData($email,$rawpass){
+public function verifyLoginInData($email,$rawpass){
 $this->db->where('email',$email);
 $this->db->where('password',$rawpass);
 
@@ -55,6 +55,19 @@ return TRUE;
 else{
     return FALSE;
 }
+
+}
+
+
+// Get user information after login
+
+public function getuserData($email){
+
+	$this->db->where('email', $email);
+
+	$query= $this->db->get('users');
+
+	return $query->row();
 
 }
 
